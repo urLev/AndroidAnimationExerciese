@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
@@ -21,6 +21,19 @@ import androidx.compose.ui.unit.sp
 fun Task1() {
     // Track whether the composable has been composed
     var isVisible by remember { mutableStateOf(false) }
+
+    val alpha by animateFloatAsState(
+        targetValue =
+            if (isVisible)
+                1f
+            else
+                0f,
+        animationSpec = tween(durationMillis = 5000),
+    )
+
+    LaunchedEffect(Unit){
+        isVisible = true
+    }
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -30,6 +43,7 @@ fun Task1() {
             text = "Hello Android",
             fontSize = 24.sp,
             // TODO add fade-in animation here
+            modifier = Modifier.graphicsLayer{this.alpha = alpha}
         )
     }
 }

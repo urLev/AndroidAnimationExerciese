@@ -26,13 +26,13 @@ Animate a composable onto and off of the screen. The starter code is found in Ta
 * In the AnimatedVisible parameters, specify the state we want to listen to, and an enter and exit animation style
 
 ```kotlin
-AnimatedVisible(
-    ...
-) {
-    Box(
-        modifier = Modifier.background(Color.Red)
-    )
-}
+//AnimatedVisible(
+//    ...
+//) {
+//    Box(
+//        modifier = Modifier.background(Color.Red)
+//    )
+//}
 ```
 
 ## Exercise 3: Infinite Animation

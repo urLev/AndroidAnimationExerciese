@@ -2,6 +2,9 @@ package com.goble.animationpractice.views
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +33,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Task2() {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -45,9 +50,18 @@ fun Task2() {
 
         // TODO Use AnimatedVisibility and set a transition
         //      into the screen and out of the screen
-        Box(
-            modifier = Modifier.background(color = Color.Red)
-        )
+
+        AnimatedVisibility(
+            visible = isVisible,
+            enter = scaleIn(),
+            exit = scaleOut()
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.Red)
+            )
+        }
     }
 }
 
